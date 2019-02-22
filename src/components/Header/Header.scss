@@ -1,0 +1,34 @@
+@import "../../lib/variables";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 1em;
+  width: 100%;
+  text-align: left;
+}
+
+.header .fab, .header .fa, .header .fas {
+  color: $fire;
+}
+
+.header .logo {
+  width: 20%;
+}
+
+.header .nav {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+}
+
+.header .nav .item {
+  margin-left: 3em;
+}
+
+.header .searchbar {
+  width: 20%;
+  position: relative;
+  display: inline-flex;
+}

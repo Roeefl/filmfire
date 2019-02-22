@@ -1,0 +1,44 @@
+@import "../../lib/variables";
+
+.editable {
+  display: flex;
+  flex-direction: row;
+}
+
+.editable .actions {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1em;
+}
+
+.editable .actions .button {
+  margin-bottom: 0.3em;
+}
+.editable .actions .button:hover {
+  background: $fire;
+}
+.editable .actions .button:hover > .fas {
+  color: white;
+}
+
+.editable .actions .fas {
+  color: $fire;
+}
+
+.editable .container {
+  width: 100%;
+}
+
+textarea.content {
+  width: 90%;
+  min-height: 3vh;
+  max-height: 18vh;
+  resize: none;
+  padding: 1em;
+}
+
+.editable .show-error {
+  color: red;
+  margin-top: 0.4em;
+  height: 1vh;
+}

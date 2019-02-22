@@ -1,0 +1,15 @@
+@import "../../lib/variables";
+
+.credits {
+  display: flex;
+  flex-direction: column;
+  font-size: 100%;
+  text-align: left;
+  margin-left: 1em;
+  margin-top: 1.4em;
+}
+
+.credits .names {
+  margin-left: 0.5em;
+  color: white;
+}

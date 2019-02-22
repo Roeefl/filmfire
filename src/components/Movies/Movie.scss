@@ -1,0 +1,60 @@
+@import "../../lib/variables";
+
+.movie {
+  width: 60%;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+  display: flex;
+  background-color: $primary;
+  padding: 1em;
+  position: relative;
+}
+
+.movie .left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie .left .image img {
+  width: 240px;
+  height: 360px;
+  padding: 1em;
+}
+
+.movie .right {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: white;
+}
+
+.movie .right > .actions {
+  display: flex;
+  margin-top: 3vh;
+}
+
+.movie .right > .actions .button {
+  margin-left: 1em;
+  padding-top: 1em;
+  width: 14em;
+}
+
+.movie .right .section {
+  padding: 1em;
+}
+
+.movie .right .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie .right .info > * {
+  margin-top: 1.5em;
+}
+
+.movie .right .info .title{
+  font-size: 200%;
+  font-weight: bold;
+}
