@@ -13,19 +13,29 @@
 
 .App-main {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   width: 100%;
+  background-color: $primary;
+  min-height: 100vmin;
+  color: $honey;
+}
+.App-sidebar {
+  flex: 1;
+}
+.App-content {
+  flex: 4;
+  display: flex;
+  justify-content: center;
+  padding-top: 6vh;
 }
 
 .App-header {
-  background-color: $primary;
-  min-height: 10vh;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   font-size: calc(10px + 1vmin);
-  color: white;
 }
 
 @keyframes App-logo-spin {
@@ -50,7 +60,7 @@
   border-radius: 10px;
   border: none;
   padding: 0.5em;
-  color:#fff;
+  color: $honey;
   cursor: pointer;
   text-align: center;
   width: 10em;
@@ -68,7 +78,7 @@
 
 .button.alpha {
   background-color: $fire;
-  color: #fff;
+  color: $honey;
 }
 
 .button.added {
@@ -111,4 +121,16 @@
   font-size: 80%;
   font-style: italic;
   margin-bottom: 0.4em;
+}
+
+.ui.divider {
+  border-top: 1px solid rgba(34,36,38,.15);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  font-size: 1rem;
+  margin: 1rem 0;
+  line-height: 1;
+  height: 0;
+  font-weight: 700;
+  letter-spacing: .05em;
+  color: rgba(0,0,0,.85);
 }

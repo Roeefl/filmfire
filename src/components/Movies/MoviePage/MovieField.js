@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EditableText from '../Common/EditableText';
+import EditableText from '../../Common/EditableText';
 
 class MovieField extends Component {
   render() {

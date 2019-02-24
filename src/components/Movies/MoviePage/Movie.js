@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import { selectMovie, fetchMovieData, updateInBucket, addToSeen, updateBucketMovieField } from '../../actions';
+import { selectMovie, fetchMovieData, updateInBucket, addToSeen, updateBucketMovieField } from '../../../actions';
 import React, { Component } from 'react';
 import { info, credits } from './movieFields';
 import MovieField from './MovieField';
 import './Movie.scss';
-import Actions from './Actions';
+import MovieActions from './MovieActions';
 import Credits from './Credits';
-import Confirm from '../Common/Confirm';
+import Confirm from '../../Common/Confirm';
+import { withRouter } from 'react-router-dom';
 
 class Movie extends Component {
   constructor(props) {
@@ -15,9 +16,24 @@ class Movie extends Component {
     this.state = { showRemoveDialog: false };
   }
 
+  componentWillReceiveProps(newProps) {
+    if (!newProps || !newProps.match || !newProps.match.params)
+      return;
+
+    const { imdbID } = newProps.match.params;
+
+    if (imdbID === this.props.selectedMovie.imdbID)
+      return;
+
+    console.log(imdbID);
+
+    if (imdbID)
+      this.props.fetchMovieData(imdbID);
+  }
+
   componentDidMount() {
     if (this.props.imdbID)
-      this.props.fetchMovieData(this.props.imdbID, this.props.bucket);
+      this.props.fetchMovieData(this.props.imdbID);
   }
 
   updateInBucket = () => {
@@ -114,14 +130,18 @@ class Movie extends Component {
     if (!this.state.showRemoveDialog)
       return;
 
-    return <Confirm yes={this.removeFromBucket} no={this.closeRemoveDialog} />
+    return <Confirm
+            msg={'Are you sure you want to remove this film from your bucket list?'} 
+            yes={this.removeFromBucket}
+            no={this.closeRemoveDialog}
+          />
   }
 
   render() {
     const { selectedMovie, movieInSeen, movieInBucket } = this.props;
 
     return (
-      <div className='movie'>
+      <article className='movie'>
 
         { this.renderRemoveDialog() }
 
@@ -134,11 +154,11 @@ class Movie extends Component {
         </div>
 
         <div className='content right'>      
-          <Actions isInSeen={movieInSeen} addToSeen={this.addToSeen} isInBucket={movieInBucket} updateInBucket={this.updateInBucket} />
+          <MovieActions isInSeen={movieInSeen} addToSeen={this.addToSeen} isInBucket={movieInBucket} updateInBucket={this.updateInBucket} />
 
           { this.renderInfo() }
         </div>
-      </div>
+      </article>
     );
   }
 }
@@ -162,4 +182,4 @@ function mapStateToProps(state, ownProps) {
 export default connect(
   mapStateToProps,
   { selectMovie, fetchMovieData, updateInBucket, addToSeen, updateBucketMovieField}
-)(Movie);
+)(withRouter(Movie));

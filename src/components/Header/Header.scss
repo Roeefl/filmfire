@@ -2,33 +2,47 @@
 
 .header {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 1em;
+  flex-direction: column;
   width: 100%;
-  text-align: left;
+  background-color: $raisin;
+  color: $honey;
 }
 
 .header .fab, .header .fa, .header .fas {
   color: $fire;
 }
 
-.header .logo {
-  width: 20%;
-}
-
-.header .nav {
-  width: 30%;
+.header .lower-header {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  // justify-content: space-between;
+  min-height: 8vh;
+  text-align: left;
 }
 
-.header .nav .item {
-  margin-left: 3em;
+.header .logo {
+  flex: 1;
+  font-size: 140%;
+  text-align: center;
+}
+.header .logo .fab {
+  color: $title;
 }
 
 .header .searchbar {
-  width: 20%;
+  flex: 1;
   position: relative;
   display: inline-flex;
+}
+
+.header nav {
+  flex: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.header nav .item {
+  margin-right: 2em;
 }

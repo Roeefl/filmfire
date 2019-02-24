@@ -5,19 +5,30 @@ import {
   SET_MOVIES,
   ADD_MOVIES,
   SELECT_MOVIE,
-  UPDATE_BUCKET_MOVIE_FIELD
+  UPDATE_BUCKET_MOVIE_FIELD,
+  LOAD_FEATURED
 } from "./types";
 
 import {
   BASE_URL,
   API_KEY,
-  FULL_PLOT
+  FULL_PLOT,
+  TYPE_MOVIE
 } from '../lib/omdb';
 
-export const loadMoreMovies = (query, currentPage) =>
-  async (dispatch) => {
+import { FEATURED } from '../lib/featured';
+
+import { MAX_SCROLL_PAGE } from '../lib/settings';
+
+export const loadMore = () =>
+  async (dispatch, getState) => {
     try {
-      const nextPage = currentPage + 1;
+      const currState = getState();
+      const { query, page } = currState.searchQuery;
+
+      const nextPage = page+1;
+      if (nextPage > MAX_SCROLL_PAGE)
+        return;
 
       dispatch({
         type: SET_SEARCH_PAGE,
@@ -52,7 +63,7 @@ export const searchMovies = (query, history) =>
     try {
       dispatch({
         type: SET_SEARCH_ALL,
-        payload: { query, page: 1, ready: false } || {}
+        payload: { query, page: 1, ready: false, type: TYPE_MOVIE } || {}
       });
 
       dispatch({
@@ -60,7 +71,7 @@ export const searchMovies = (query, history) =>
         payload: false
       });
 
-      const results = await fetch(`${BASE_URL}?${API_KEY}&s=${query}&page=1`);
+      const results = await fetch(`${BASE_URL}?${API_KEY}&s=${query}&${TYPE_MOVIE}&page=1`);
       const data = await results.json();
       const { Search } = data;
 
@@ -74,7 +85,7 @@ export const searchMovies = (query, history) =>
         payload: true
       });
 
-      history.push('/');
+      history.push('/movies');
     } catch (error) {
       console.log('searchMovies failed with error: ' + error);
     }
@@ -94,10 +105,14 @@ export const updateBucketMovieField = (bucket, imdbID, fieldName, text) => {
   }
 };
 
-export const fetchMovieData = (imdbID, bucket) =>
-  async (dispatch) => {
+export const fetchMovieData = (imdbID) =>
+  async (dispatch, getState) => {
     try {
-      const inBucket = bucket.find(movie => movie.imdbID === imdbID );
+      const currState = getState();
+
+      const currQueryType = currState.searchQuery.type;
+
+      const inBucket = currState.bucket.find(movie => movie.imdbID === imdbID );
       
       if (inBucket) {
         dispatch({
@@ -108,7 +123,7 @@ export const fetchMovieData = (imdbID, bucket) =>
         return;
       }
 
-      const results = await fetch(`${BASE_URL}?${API_KEY}&i=${imdbID}&${FULL_PLOT}`);
+      const results = await fetch(`${BASE_URL}?${API_KEY}&i=${imdbID}&${FULL_PLOT}&${currQueryType}`);
       const movieData = await results.json();
 
       dispatch({
@@ -121,5 +136,25 @@ export const fetchMovieData = (imdbID, bucket) =>
     }
   };
 
+  export const loadFeatured = () =>
+  async (dispatch) => {
+    try {
+      const featured = [];
 
-  
+      let result = {};
+      let movieData = {};
+
+      for (let imdbID of FEATURED) {
+        result = await fetch(`${BASE_URL}?${API_KEY}&i=${imdbID}`);
+        movieData = await result.json();
+        featured.push(movieData);
+      }
+
+      dispatch({
+        type: LOAD_FEATURED,
+        payload: featured || []
+      });
+    } catch (error) {
+      console.log('loadFeatured failed with error: ' + error);
+    }
+  };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Actions extends Component {
+class MovieActions extends Component {
   renderUpdateInBucket() {
     const { isInBucket, updateInBucket } = this.props;
     const color = (isInBucket ? 'added' : 'alpha');
@@ -13,26 +13,13 @@ class Actions extends Component {
     );
   }
 
-  renderAddToSeen() {
-    // const { isInSeen, addToSeen } = this.props;
-    // const color = (isInSeen ? 'added' : 'alpha');
-    return;
-
-    // return (
-    //   <div className={`button  ${color}`} onClick={addToSeen}>
-    //     <i className='fas fa-eye' /> {isInSeen ? 'Remove From' : 'Add to'} Seen List
-    //   </div>
-    // );
-  }
-
   render() {
     return (
       <div className='actions'>
         { this.renderUpdateInBucket() }
-        { this.renderAddToSeen() }
       </div>
     );
   }
 }
 
-export default Actions;
+export default MovieActions;

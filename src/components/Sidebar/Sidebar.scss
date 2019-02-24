@@ -1,0 +1,23 @@
+@import "../../lib/variables";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 2em;
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2em;
+}
+
+.sidebar h2 {
+  font-size: 110%;
+  font-weight: bold;
+}
+
+.sidebar .types li {
+  margin-bottom: 1.4em;
+}

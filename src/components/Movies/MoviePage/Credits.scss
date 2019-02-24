@@ -1,4 +1,4 @@
-@import "../../lib/variables";
+@import "../../../lib/variables";
 
 .credits {
   display: flex;
@@ -11,5 +11,5 @@
 
 .credits .names {
   margin-left: 0.5em;
-  color: white;
+  color: $honey;
 }

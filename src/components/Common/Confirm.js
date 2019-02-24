@@ -3,7 +3,8 @@ import './Confirm.scss';
 
 class Confirm extends Component {
   render() {
-    const { yes, no } = this.props;
+    const { msg, yes, no } = this.props;
+
     return (
       <div className='confirm'>
         <div className='container'>
@@ -14,7 +15,7 @@ class Confirm extends Component {
           <div className='panel'>
 
             <div className='message'>
-              Are you sure?
+              {msg}
             </div>
 
             <div className='actions'>

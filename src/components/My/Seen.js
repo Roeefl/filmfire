@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import MovieCard from '../Movies/MovieCard';
+import MovieCard from '../Movies/MovieCard/MovieCard';
 
 class Seen extends Component {
   renderMovies() {

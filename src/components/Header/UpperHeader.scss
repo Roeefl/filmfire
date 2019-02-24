@@ -1,0 +1,31 @@
+@import "../../lib/variables";
+
+.upper-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: $primary;
+  width: 100%;
+}
+
+.upper-header > * {
+  padding: 1em;
+}
+
+.upper-header .social .fab {
+  margin-left: 2em;
+  color: $honey;
+  cursor: pointer;
+}
+
+.upper-header .social .fab:hover {
+  color: $fire;
+}
+
+.upper-header .links {
+  margin-right: 3em;
+}
+
+.upper-header .links > * {
+  cursor: pointer;
+}

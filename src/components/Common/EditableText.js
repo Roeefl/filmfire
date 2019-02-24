@@ -4,15 +4,11 @@ import TextareaAutosize from 'react-textarea-autosize';
 import moment from 'moment';
 
 class EditableText extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      editMode: false,
-      text: '',
-      error: false
-    };
-  }
+  state = {
+    editMode: false,
+    text: '',
+    error: false
+  };
 
   updateText = (event) => {
     this.setState( { text: event.target.value } );

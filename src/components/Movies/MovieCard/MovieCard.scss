@@ -1,0 +1,50 @@
+@import "../../../lib/variables";
+
+.movie-card {
+  position: relative;
+  margin: 1em;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  // justify-content: flex-start;
+  // align-items: center;
+}
+
+.movie-card .image img {
+  width: 200px;
+  height: 300px;
+}
+
+.movie-card .details > * {
+  width: 100%;
+  min-height: 1em;
+  font-size: 80%;
+  color: $honey;
+  padding-top: 1em;
+}
+
+.movie-card .details .title {
+  font-weight: bold;
+}
+
+.movie-card.wide {
+  flex-direction: row;
+  margin: 2em 0 0 1em;
+  padding: 0;
+}
+
+.movie-card.wide .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movie-card.wide .details > * {
+  padding: 1em;
+}
+
+.movie-card.wide .image img {
+  width: 100px;
+  height: 150px;
+}

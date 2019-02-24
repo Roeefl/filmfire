@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { searchMovies } from '../../actions';
-import React, { Component } from 'react';
-import './Header.scss';
 import { Link, withRouter } from 'react-router-dom';
-import SearchBar from './SearchBar';
+import React, { Component } from 'react';
+import { searchMovies } from '../../actions';
+import './Header.scss';
+import UpperHeader from './UpperHeader';
+import SearchBar from '../Common/SearchBar';
 
 class Header extends Component {
   onFormSubmit = (query) => {
@@ -13,38 +14,39 @@ class Header extends Component {
   render() {
     return (
       <div className='header' role='navigation'>
-        <div className='logo'>
-          <Link to='/'>
-            <i className='fab fa-gripfire' /> FilmFire
-          </Link>
-        </div>
-        <div className='nav'>
-          <div className='item'>
+        <UpperHeader />
+
+        <div className='lower-header'>
+
+          <div className='logo'>
             <Link to='/'>
-              <i className='fas fa-igloo' /> Home
+              <i className='fab fa-gripfire' /> FilmFire
             </Link>
           </div>
-          <div className='item'>
-            <Link to='/about'>
-            <i className='fas fa-question-circle' /> About
-            </Link>
+          <div className='searchbar'>
+            <SearchBar onSubmit={this.onFormSubmit} placeholder='Movie title or related word'/>
           </div>
+
+          <nav>
+            <div className='item'>
+              <Link to='/'>
+                <i className='fas fa-igloo' /> Home
+              </Link>
+            </div>
+            <div className='item'>
+              <Link to='/about'>
+              <i className='fas fa-question-circle' /> About
+              </Link>
+            </div>
+            <div className='item'>
+              <Link to='/bucket'>
+                <i className='fab fa-bitbucket' /> Bucket List
+              </Link>
+            </div>
+          </nav>
+
         </div>
-        <div className='nav'>
-        <div className='item'>
-            <Link to='/bucket'>
-              <i className='fab fa-bitbucket' /> Bucket List
-            </Link>
-          </div>
-          {/* <div className='item'>
-            <Link to='/seen'>
-              <i className='fas fa-check-circle' /> Seen
-            </Link>
-          </div> */}
-        </div>
-        <div className='searchbar'>
-          <SearchBar onSubmit={this.onFormSubmit} placeholder='Movie title or related word'/>
-        </div>
+
       </div>
     );
   }
