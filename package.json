@@ -6,7 +6,7 @@
     "autosize": "^4.0.2",
     "firebase": "^5.8.4",
     "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-infinite-scroller": "^1.2.4",
